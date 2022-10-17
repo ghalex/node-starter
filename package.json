@@ -7,7 +7,7 @@
     "dev": "nodemon",
     "start": "node -r dotenv-flow/config -r tsconfig-paths/register dist/src/index.js",
     "build": "tsc",
-    "lint": "eslint src --ext js,ts,tsx",
+    "lint": "eslint src --ext js,ts",
     "commitlint": "commitlint",
     "prepare": "husky install"
   },
