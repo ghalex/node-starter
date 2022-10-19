@@ -1,33 +1,19 @@
-import env from '@/env'
+import { Application } from 'express'
 
-function format (s: number) {
-  function pad (s: number) {
-    return (s < 10 ? '0' : '') + s
+const controller = (app: Application) => {
+  const getStatus = async (req, res, next) => {
+    const statusService = app.services.status
+
+    try {
+      res.status(200).json(statusService.get())
+    } catch (err) {
+      next(err)
+    }
   }
 
-  const hours = Math.floor(s / (60 * 60))
-  const minutes = Math.floor(s % (60 * 60) / 60)
-  const seconds = Math.floor(s % 60)
-
-  return pad(hours) + ':' + pad(minutes) + ':' + pad(seconds)
-}
-
-const getStatus = async (req, res, next) => {
-  try {
-    res.status(200).json(
-      {
-        name: env.app.name,
-        port: env.app.httpPort,
-        version: env.app.version,
-        envirement: env.app.environment,
-        uptime: format(process.uptime())
-      }
-    )
-  } catch (err) {
-    next(err)
+  return {
+    getStatus
   }
 }
 
-export default {
-  getStatus
-}
+export default controller

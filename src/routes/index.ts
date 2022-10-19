@@ -1,12 +1,11 @@
-import express from 'express'
-
+import express, { Application } from 'express'
 import { status, test } from '@/controllers'
 
-const router = express.Router()
+const createRoutes = (app: Application) => {
+  const router = express.Router()
 
-const createRoutes = () => {
-  router.use('/', status.getStatus)
-  router.use('/test', test.runTest)
+  router.get('/', status(app).getStatus)
+  router.get('/test', test(app).runTest)
 
   return router
 }

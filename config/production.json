@@ -1,0 +1,6 @@
+{
+  "name": "node-started",
+  "host": "production.com",
+  "port": 433,
+  "version": "1.0.0"
+}
