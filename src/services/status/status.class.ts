@@ -1,7 +1,8 @@
 import { Status } from './status.model'
+import type { Config } from '@/config'
 
 class StatusClass {
-  config: any
+  config: Config
 
   constructor (config: any) {
     this.config = config
@@ -22,12 +23,12 @@ class StatusClass {
   get (): Status {
     return {
       name: this.config.get('name'),
-      port: this.config.get('port'),
-      version: this.config.get('version'),
-      host: this.config.get('host'),
+      port: this.config.port,
+      version: this.config.version,
+      host: this.config.host,
       envirement: this.config.util.getEnv('NODE_ENV'),
       uptime: this.format(process.uptime()),
-      secret: this.config.get('secret')
+      secret: this.config.secret
     }
   }
 }

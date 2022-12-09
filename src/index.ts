@@ -1,3 +1,8 @@
+/* eslint-disable import/first */
+import moduleAlias from 'module-alias'
+moduleAlias.addAlias('@', __dirname)
+
+// Start
 import express from 'express'
 import cors from './cors'
 import createRoutes from './routes'

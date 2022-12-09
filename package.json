@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "start": "node -r dotenv-flow/config -r tsconfig-paths/register dist/src/index.js",
+    "start": "node -r dotenv-flow/config dist/index.js",
     "build": "tsc",
     "lint": "eslint src --ext js,ts",
     "commitlint": "commitlint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prebuild": "rm -rf dist"
   },
   "author": "",
   "license": "ISC",
@@ -28,9 +29,9 @@
     "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-promise": "^6.1.0",
     "husky": "^8.0.1",
+    "module-alias": "^2.2.2",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
-    "tsconfig-paths": "^4.1.0",
     "typescript": "^4.8.4"
   },
   "dependencies": {
