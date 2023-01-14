@@ -2,6 +2,5 @@
   "name": "node-started",
   "host": "localhost",
   "port": 5000,
-  "version": "1.0.0",
-  "path": "/src"
+  "version": "1.0.0"
 }
