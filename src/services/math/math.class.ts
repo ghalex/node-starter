@@ -1,8 +1,9 @@
+import { Id, Params } from 'zapnode'
 
-class MathService {
-  async sum (a: number, b: number) {
-    return a + b
+class MathClass {
+  async get (id: Id, params?: Params) {
+    return parseInt(id.toString()) * 2
   }
 }
 
-export default MathService
+export default MathClass

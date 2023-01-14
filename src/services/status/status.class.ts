@@ -1,14 +1,12 @@
-import { Status } from './status.model'
-import type { Config } from '@/config'
+
+import { App } from '@/declarations'
+import { Params } from 'zapnode'
 
 class StatusClass {
-  config: Config
+  // eslint-disable-next-line no-useless-constructor
+  constructor (protected app: App) {}
 
-  constructor (config: any) {
-    this.config = config
-  }
-
-  format (s: number) {
+  protected format (s: number) {
     function pad (s: number) {
       return (s < 10 ? '0' : '') + s
     }
@@ -20,15 +18,18 @@ class StatusClass {
     return pad(hours) + ':' + pad(minutes) + ':' + pad(seconds)
   }
 
-  get (): Status {
+  async find (params?: Params) {
+    const config = this.app.config
+    const data = await this.app.getDb().collection('systems').find({}).toArray()
+
     return {
-      name: this.config.get('name'),
-      port: this.config.port,
-      version: this.config.version,
-      host: this.config.host,
-      envirement: this.config.util.getEnv('NODE_ENV'),
+      port: config.port,
+      version: config.version,
+      host: config.host,
       uptime: this.format(process.uptime()),
-      secret: this.config.secret
+      secret: config.secret,
+      user: params?.user,
+      data
     }
   }
 }

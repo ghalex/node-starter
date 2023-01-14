@@ -2,5 +2,12 @@
   "name": "node-started",
   "host": "localhost",
   "port": 5000,
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "mongodb": {
+    "db": "zapnode-test",
+    "protocol": "mongodb+srv",
+    "host": "localhost",
+    "user": "",
+    "password": ""
+  }
 }

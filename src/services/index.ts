@@ -1,25 +1,11 @@
-import { Application } from 'express'
-import createMathService from './math/math.service'
-import createStatusService from './status/status.service'
+import { App } from '../declarations'
 
-const registerServices = (app: Application) => {
-  const services = {
-    math: createMathService(app),
-    status: createStatusService(app)
-  }
+import { registerStatus } from './status/status'
+import { registerMath } from './math/math'
 
-  app.services = services
-
-  return services
-}
-
-declare global {
-  // eslint-disable-next-line no-unused-vars
-  namespace Express {
-    export interface Application {
-      services: ReturnType<typeof registerServices>
-    }
-  }
+const registerServices = (app: App) => {
+  registerStatus(app)
+  registerMath(app)
 }
 
 export default registerServices
